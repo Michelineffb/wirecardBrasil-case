@@ -14,11 +14,13 @@ app.use("/client", clientRouter);
 
 app.use("/purchase", purchaseRouter);
 
-const server = app.listen(3003, () => {
-    if(server){
-        const address = server.address() as AddressInfo;
-        console.log(`Servidor rodando em http://localhost:${address.port}`);
+const { PORT = 3003} = process.env
+
+const server = app.listen(PORT, () => {
+    if (server) {
+      const address = server.address() as AddressInfo;
+      console.log(`Servidor rodando em http://localhost:${address.port}`);
     } else {
-        console.error('Falha ao rodar o servidor.')
+      console.error(`Falha ao rodar o servidor.`);
     }
-});
+  });
